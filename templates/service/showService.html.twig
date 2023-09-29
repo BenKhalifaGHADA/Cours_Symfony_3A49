@@ -1,0 +1,67 @@
+<h1>Service: {{n}} </h1> {# Afficher une variable {{ v}} #}
+{% set a=5 %}
+La valeur de a est :{{ a }}
+<br>
+{% set ch1="Hello" %}
+{{ ch1 }}
+<br>
+{# Tableau indexé #}
+<h2>Tableau indexé</h2>
+{% set tab=[1,2,3] %}
+{% for i in tab %}
+    {{ i }}
+{% endfor %}
+
+<h2>Tableau associatif</h2>
+{# Tableau associatif #}
+{# Structure itérative #}
+{% set assocArray = {'name': 'John', 'age': 30, 'city': 'New York'} %}
+{% for key, value in assocArray %}
+    Key: {{ key }}, Value: {{ value }}<br>
+    {% else %}
+    Pas des personnes
+{% endfor %}
+
+{# Structure conditionnelle #}
+{% if a==6  %}
+    <h1>La valeur de {{ a }}</h1>
+    {% else %}
+    <h1>Message d'erreur </h1>
+{% endif %}
+
+{#est équivalent à #}
+{{ a==6 ? '<h1>La valeur de {{ a }}</h1>' : '<h1>Message derreur </h1>'}}
+<br>
+{% set c=6 %}
+{% set b=5 %}
+{% set d=true %}
+{% if ((a==1 and b>0) or not c==0) and d is defined %}
+    {% set resultat = (d + a * b) / c %}
+    {{ resultat }}
+{% endif %}
+
+{% if 'Fabien' starts with 'F' %}
+         commence par F
+{% endif %}
+
+{% if 'Fabien' ends with 'n' %}
+    Finis par n
+{% endif %}
+
+{% set ch2="hello" %}
+
+{{ ch2|upper }}
+<br>
+{{ 'HELLO WORLD!'|lower }}
+<br>
+{{ '.Les fleurs de mai.'|trim('.')|upper }}
+<br>
+{{ app.environment }}
+<br>
+{{ app.debug }}
+<br>
+{{ app.request.server.get("SERVER_NAME") }}
+{#  URL et path #}
+<a href="{{ url('app_service') }}">Home_URL</a>
+<a href="{{ path('app_service') }}">Home_PATH</a>
+<img src="{{ asset('images/Taha_Hussein.jpg') }}"> {# images/fichier CSS /fichier JS #}
