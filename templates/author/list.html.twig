@@ -11,7 +11,11 @@
         <td>{{ author.id }}</td>
         <td>{{ author.username }}</td>
         <td>{{ author.email }}</td>
-        <td><a href="">Show</a></td>
+        <td>
+            <a href="{{ path('showAut',{'id': author.id})  }}">Show</a>
+            <a href="{{ path('deleleAuthor',{'id': author.id})  }}">Delete</a>
+            <a href="{{ path('updateAuth',{'id': author.id}) }}">Update</a>
+        </td>
     </tr>
     {% endfor %}
 </table>
