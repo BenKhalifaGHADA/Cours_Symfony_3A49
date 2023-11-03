@@ -14,7 +14,7 @@
             <td>{{ book.title }}</td>
             <td>{{ book.category }}</td>
             <td>{{ book.publicationDate|date('y-m-d')}}</td>
-            <td>{{ book.author.username }}</td>
+            <td>{{ book.authors.username }}</td>
             <td>
                 <a href="{{ path('deleteBook',{'id':book.ref}) }}">Delete</a>
                 <a href="{{ path('showDetails',{'id':book.ref}) }}">Show</a>

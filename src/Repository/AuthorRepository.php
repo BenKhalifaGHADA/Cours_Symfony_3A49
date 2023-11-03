@@ -45,4 +45,31 @@ class AuthorRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
+
+    public function showBooksByDateAndNbBooks($nbooks, $year)
+    {
+        return $this->createQueryBuilder('b')
+            ->join('b.author', 'a')
+            ->addSelect('a')
+            ->where('a.nb_books > :nbooks')
+            ->andWhere("b.publicationDate < :year")
+            ->setParameter('nbooks', $nbooks)
+            ->setParameter('year', $year)
+            ->getQuery()
+            ->getResult();
+    }
+
+    //Query Builder: Question 5
+    public function updateBooksCategoryByAuthor($c)
+    {
+        return $this->getEntityManager()->createQueryBuilder()
+            ->update('App\Entity\Book', 'b')
+
+            ->set('b.category', '?1')
+            ->setParameter(1, 'Romance')
+            ->where('b.category LIKE ?2')
+            ->setParameter(2, $c)
+            ->getQuery()
+            ->getResult();
+    }
 }
